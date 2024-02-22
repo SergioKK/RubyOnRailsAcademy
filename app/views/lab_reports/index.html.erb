@@ -1,0 +1,26 @@
+<h1>LabReports</h1>
+
+<%= link_to "New Lab Report", new_lab_report_path %>
+
+<ul>
+  <% @reports.each do |report| %>
+    <h1><%= report.title %></h1>
+
+    <%= report.user.first_name %>
+    <%= report.user.last_name %>
+    <%= report.user.email %>
+
+    <p><%= report.description %></p>
+
+    <% if report.grade %>
+      <h3><%= report.grade %></h3>
+    <% else %>
+      <li><%= link_to "Add mark", add_mark_path(report) %></li>
+    <% end %>
+
+    <li><%= link_to "Remove", lab_report_path(report), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+    } %></li>
+  <% end %>
+</ul>
