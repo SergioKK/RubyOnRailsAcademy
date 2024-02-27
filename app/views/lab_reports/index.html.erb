@@ -1,26 +1,48 @@
-<h1>LabReports</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="navbar-nav">
+    &nbsp<%= link_to "New Lab Report", new_lab_report_path, class: "btn btn-primary mb-3" %>&nbsp
+    <%= link_to "New User", new_user_path, class: 'btn btn-primary mb-3' %>
+  </div>
+</nav>
 
-<%= link_to "New Lab Report", new_lab_report_path %>
+<h1>Lab reports</h1>
 
 <ul>
-  <% @reports.each do |report| %>
-    <h1><%= report.title %></h1>
+  <div class="list-group w-auto">
+      <% @reports.each do |report| %>
+      <div class="card" >
+        <div class="card-body">
 
-    <%= report.user.first_name %>
-    <%= report.user.last_name %>
-    <%= report.user.email %>
+          <h4 class="card-title">Title</h4>
+          <p class="card-text"><%= report.title %></p>
 
-    <p><%= report.description %></p>
+          <div class="mb-3">
+            <h5><%= "User" %></h5>
+            <%= report.user.first_name %>
+            <%= report.user.last_name %>
+            <%= report.user.email %>
+          </div>
 
-    <% if report.grade %>
-      <h3><%= report.grade %></h3>
-    <% else %>
-      <li><%= link_to "Add mark", add_mark_path(report) %></li>
-    <% end %>
+          <div class="form-control mb-3">
+            <h2><%= "Report" %></h2>
+            <p><%= report.description %></p>
+          </div>
 
-    <li><%= link_to "Remove", lab_report_path(report), data: {
-  turbo_method: :delete,
-  turbo_confirm: "Are you sure?"
-    } %></li>
-  <% end %>
+          <div class="mb-3">
+            <h5><%= "Mark" %></h5>
+            <% if report.grade %>
+              <h3><%= report.grade %></h3>
+            <% else %>
+              <li><%= link_to "Add mark", add_mark_path(report), class: 'btn btn-primary' %></li>
+            <% end %>
+          </div>
+          <br/>
+          <li><%= link_to "Remove", lab_report_path(report), class: 'btn btn-danger', data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+          } %></li>
+        </div>
+      </div>
+      <% end %>
+  </div>
 </ul>

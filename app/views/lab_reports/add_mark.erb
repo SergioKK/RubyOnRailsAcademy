@@ -1,10 +1,10 @@
 <%= form_with model: @report do |form| %>
   <div>
-    <%= form.label :grade %><br>
-    <%= form.text_area :grade %>
+    <% form.label :grade %><br>
+    <%= form.text_area :grade, class: "form-control", placeholder:"Mark", autofocus: true  %>
   </div>
-
+  <br/>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Add mark", class: 'btn btn-primary' %>
   </div>
 <% end %>

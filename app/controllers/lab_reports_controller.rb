@@ -15,7 +15,7 @@ class LabReportsController < ApplicationController
   def create
     @report = LabReport.new(report_params)
     if @report.save
-      redirect_to @report
+      redirect_to lab_reports_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class LabReportsController < ApplicationController
     @report = LabReport.find(params[:id])
 
     if @report.update(report_params)
-      redirect_to @report
+      redirect_to lab_reports_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class LabReportsController < ApplicationController
     @report = LabReport.find(params[:id])
     @report.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to lab_reports_path, status: :see_other
   end
 
   def add_mark

@@ -1,28 +1,28 @@
 <%= form_with model: report do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+  <div class="field form-group">
+    <% form.label :title %><br>
+    <%= form.text_field :title, class: "form-control", placeholder:"title", autofocus: true %>
     <% report.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
-  <div>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
+  <div class="field form-group">
+    <% form.label :description %><br>
+    <%= form.text_area :description, class: "form-control", placeholder:"description", autofocus: true %>
     <% report.errors.full_messages_for(:description).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
+  <br/>
 
-  <div class = "row">
-    <div class = "form-group col-md-3">
-      <%= form.label :student %><br>
-      <%= form.select :user_id, User.pluck(:first_name, :id) %>
-    </div>
+  <div class="col-md-6 form-group">
+    <%= form.label :student %><br>
+    <%= form.collection_select :user_id, User.order(:first_name), :id, :last_name, {}, class: "form-control", autofocus: true  %>
   </div>
 
+  <br/>
   <div>
-    <%= form.submit %>
+    <%= form.submit "Create", class: 'btn btn-primary' %>
   </div>
 <% end %>
