@@ -1,13 +1,1 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-harry:
-  id: 1
-  first_name: Harry
-  last_name: Potter
-  email: harry@potter.com
-
-ron:
-  id: 2
-  first_name: Ron
-  last_name: Weasley
-  email: ron@weasley.com
