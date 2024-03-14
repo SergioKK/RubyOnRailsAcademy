@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="navbar-nav">
     &nbsp<%= link_to "New Lab Report", new_lab_report_path, class: "btn btn-primary mb-3" %>&nbsp
-    <%= link_to "New User", new_user_path, class: 'btn btn-primary mb-3' %>
+    <% if user_signed_in? %>
+      <%= button_to "Sign out",  destroy_user_session_path, method: :delete, class: 'btn btn-primary mb-3' %>
+    <% end %>
   </div>
 </nav>
 
@@ -29,18 +31,30 @@
           </div>
 
           <div class="mb-3">
+
             <h5><%= "Mark" %></h5>
             <% if report.grade %>
               <h3><%= report.grade %></h3>
             <% else %>
-              <li><%= link_to "Add mark", add_mark_path(report), class: 'btn btn-primary' %></li>
+              <% if current_user.role == "teacher" %>
+                <li><%= link_to "Add mark", add_mark_path(report), class: 'btn btn-primary' %></li>
+              <% else %>
+                <h3><%= "No grade yet" %></h3>
+              <% end %>
+            <% end %>
+
+            <% if current_user.role == "teacher" %>
+              <br/>
+              <li><%= link_to "Remove", lab_report_path(report), class: 'btn btn-danger', data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %></li>
+            <% end %>
+
+            <% if current_user == report.user %>
+              <li><%= link_to "Edit lab report", edit_lab_report_path(report), class: 'btn btn-primary' %></li>
             <% end %>
           </div>
-          <br/>
-          <li><%= link_to "Remove", lab_report_path(report), class: 'btn btn-danger', data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-          } %></li>
         </div>
       </div>
       <% end %>

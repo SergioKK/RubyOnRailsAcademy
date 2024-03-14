@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root "lab_reports#index"
+
   resources :users
   resources :lab_reports
 
