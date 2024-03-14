@@ -14,7 +14,6 @@ class LabReportsController < ApplicationController
 
   def create
     @report = LabReport.new(report_params)
-    puts report_params
     if @report.save
       redirect_to lab_reports_path
     else
