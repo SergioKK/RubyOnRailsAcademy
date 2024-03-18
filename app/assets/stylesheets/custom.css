@@ -1,6 +1,13 @@
-.labreport {
-  background-color: #367f68;
+html,
+body {
+  height: 100%;
 }
-.general {
-  background-color: #000000;
+.card-title {
+  background: #c0e1af;
+}
+.user {
+  background: #b3dae8;
+}
+.body {
+  background: #efadc5;
 }

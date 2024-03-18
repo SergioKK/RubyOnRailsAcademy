@@ -1,62 +1,45 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="navbar-nav">
-    &nbsp<%= link_to "New Lab Report", new_lab_report_path, class: "btn btn-primary mb-3" %>&nbsp
-    <% if user_signed_in? %>
-      <%= button_to "Sign out",  destroy_user_session_path, method: :delete, class: 'btn btn-primary mb-3' %>
-    <% end %>
-  </div>
-</nav>
-
 <h1>Lab reports</h1>
 
 <ul>
-  <div class="list-group w-auto">
-      <% @reports.each do |report| %>
-      <div class="card" >
-        <div class="card-body">
+  <% @reports.each do |report| %>
+    <div class="card">
+      <h2 class="card-title"><center><%= report.title %></h2></center>
 
-          <h4 class="card-title">Title</h4>
-          <p class="card-text"><%= report.title %></p>
-
-          <div class="mb-3">
-            <h5><%= "User" %></h5>
-            <%= report.user.first_name %>
-            <%= report.user.last_name %>
-            <%= report.user.email %>
-          </div>
-
-          <div class="form-control mb-3">
-            <h2><%= "Report" %></h2>
-            <p><%= report.description %></p>
-          </div>
-
-          <div class="mb-3">
-
-            <h5><%= "Mark" %></h5>
-            <% if report.grade %>
-              <h3><%= report.grade %></h3>
-            <% else %>
-              <% if current_user.role == "teacher" %>
-                <li><%= link_to "Add mark", add_mark_path(report), class: 'btn btn-primary' %></li>
-              <% else %>
-                <h3><%= "No grade yet" %></h3>
-              <% end %>
-            <% end %>
-
-            <% if current_user.role == "teacher" %>
-              <br/>
-              <li><%= link_to "Remove", lab_report_path(report), class: 'btn btn-danger', data: {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
-              } %></li>
-            <% end %>
-
-            <% if current_user == report.user %>
-              <li><%= link_to "Edit lab report", edit_lab_report_path(report), class: 'btn btn-primary' %></li>
-            <% end %>
-          </div>
-        </div>
+      <div class="mb-3 user">
+        <h5>
+          <%= report.user.first_name %>
+          <%= report.user.last_name %>
+          <%= report.user.email %>
+        </h5>
       </div>
-      <% end %>
-  </div>
+
+      <div class="form-control mb-3">
+        <center><h2><%= report.description %></h2></center>
+      </div>
+
+      <div class="mb-3">
+        <% if report.grade %>
+          <h3>Mark: <%= report.grade %></h3>
+        <% else %>
+          <% if current_user.role == "teacher" %>
+            <li><%= link_to "Add mark", add_mark_path(report), class: 'btn btn-primary' %></li>
+          <% else %>
+            <h3><%= "No grade yet" %></h3>
+          <% end %>
+        <% end %>
+
+        <% if current_user.role == "teacher" %>
+          <li><%= link_to "Remove", lab_report_path(report), class: 'btn btn-danger', data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          } %></li>
+        <% end %>
+
+        <% if current_user == report.user %>
+          <li><%= link_to "Edit lab report", edit_lab_report_path(report), class: 'btn btn-primary' %></li>
+        <% end %>
+      </div>
+    </div>
+    </br>
+  <% end %>
 </ul>
