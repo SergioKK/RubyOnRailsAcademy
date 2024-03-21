@@ -15,12 +15,10 @@
       <div><%= message %></div>
     <% end %>
   </div>
-  <br/>
 
   <%= form.hidden_field :user_id, :value => current_user.id %>
 
-  <br/>
   <div>
-    <%= form.submit "Create"%>
+    <%= form.submit "Confirm", class: 'btn btn-primary'%>
   </div>
 <% end %>

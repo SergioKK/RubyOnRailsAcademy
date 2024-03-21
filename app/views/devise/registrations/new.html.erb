@@ -19,11 +19,6 @@
     <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field form-control">
-    <%= f.label :role %><br />
-    <%= f.select :role, collection: User.roles.keys.to_a%>
-  </div>
-
   <div class="field form-group">
     <%= f.label :password %>
     <% if @minimum_password_length %>

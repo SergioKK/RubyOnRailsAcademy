@@ -15,6 +15,7 @@ class LabReportsController < ApplicationController
   def create
     @report = LabReport.new(report_params)
     if @report.save
+      current_user
       redirect_to lab_reports_path
     else
       render :new, status: :unprocessable_entity

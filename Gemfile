@@ -53,8 +53,8 @@ group :development, :test do
   gem 'devise'
   gem 'faker'
   gem 'letter_opener'
-  gem 'bootstrap-sass', '~> 3.4.1'
   gem 'sassc-rails', '>= 2.1.0'
+  gem "rolify"
 
 end
 

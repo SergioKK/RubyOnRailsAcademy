@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'user/index'
+  get 'user/edit'
+  get 'user/update'
   devise_for :users
   root "lab_reports#index"
 
