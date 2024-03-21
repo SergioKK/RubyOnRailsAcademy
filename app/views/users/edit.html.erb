@@ -1,5 +1,4 @@
 <h2>Edit <%= @user.email %></h2>
-<%= current_user.roles.pluck(:name) %>
 
 <%= form_with model: @user do |f| %>
   <!--  default devise form and render-->
@@ -23,7 +22,7 @@
 
   <div class="field">
     <%= f.label :role %>
-    <%= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
+    <%= f.collection_check_boxes :role_ids, Role.where(resource_type: nil), :id, :name %>
     <%= @user.errors[:roles] %>
     <br /><br />
   </div>

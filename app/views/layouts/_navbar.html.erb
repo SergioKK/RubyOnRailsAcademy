@@ -2,6 +2,7 @@
   <div class="navbar-nav">
     <% if user_signed_in? %>
       &nbsp<%= link_to "Lab reports", lab_reports_path, class: "btn btn-primary mb-3" %>&nbsp
+      <%= link_to "Students", users_path, class: "btn btn-primary mb-3" %>&nbsp
       <%= link_to "New lab report", new_lab_report_path, class: "btn btn-primary mb-3" %>&nbsp
       <%= link_to 'Edit user', edit_user_registration_path, class: 'btn btn-primary mb-3' %>&nbsp
       <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-primary mb-3' %>&nbsp

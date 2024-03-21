@@ -16,9 +16,10 @@ RSpec.describe 'Users', type: :system do
       visit new_lab_report_path
       fill_in('title', :with => 'Great serve')
       fill_in('description', :with => 'Rotate your shoulders faster')
-      click_button('Create')
+      click_button('Confirm')
       sleep 2
       expect(page).to have_content 'Lab reports'
+      expect(page).to have_content 'Edit lab report'
     end
   end
 end

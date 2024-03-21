@@ -1,6 +1,7 @@
 class LabReportsController < ApplicationController
   def index
     @reports = LabReport.all
+    authorize @reports
   end
 
   def show
@@ -15,20 +16,20 @@ class LabReportsController < ApplicationController
   def create
     @report = LabReport.new(report_params)
     if @report.save
-      current_user
       redirect_to lab_reports_path
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-
   def edit
     @report = LabReport.find(params[:id])
+    authorize @report
   end
 
   def update
     @report = LabReport.find(params[:id])
+    authorize @report
 
     if @report.update(report_params)
       redirect_to lab_reports_path
@@ -39,6 +40,7 @@ class LabReportsController < ApplicationController
 
   def destroy
     @report = LabReport.find(params[:id])
+    authorize @report
     @report.destroy
 
     redirect_to lab_reports_path, status: :see_other
@@ -46,9 +48,11 @@ class LabReportsController < ApplicationController
 
   def add_mark
     @report = LabReport.find(params[:id])
+    authorize @report
   end
 
   private
+
   def report_params
     params.require(:lab_report).permit(:title, :description, :grade, :user_id)
   end

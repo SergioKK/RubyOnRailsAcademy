@@ -1,5 +1,4 @@
 <h2>Edit <%= @user.email %></h2>
-<%= current_user.roles.pluck(:name) %>
 <%= form_with model: @user do |f| %>
 
 <!--  default devise form and render-->
@@ -21,11 +20,13 @@
     <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
-    <%= f.label :role %>
-    <%= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
-    <%= @user.errors[:roles] %><br /><br />
-  </div>
+  <% if policy(@user).edit? %>
+    <div class="field">
+      <%= f.label :role %>
+      <%= f.collection_check_boxes :role_ids, Role.where(resource_type: nil), :id, :name %>
+      <%= @user.errors[:roles] %><br /><br />
+    </div>
+  <% end %>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

@@ -11,3 +11,8 @@ body {
 .body {
   background: #efadc5;
 }
+table, tr, td {
+  background-color: #d3bc7e;
+  text-align: center;
+  border: 2px solid black;
+}

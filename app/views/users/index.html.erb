@@ -1,0 +1,17 @@
+<h1>Students</h1>
+
+<table style="width:100%">
+  <thead>
+    <td>User name</td>
+    <td>Email</td>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.first_name %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to "Edit user", edit_user_path(user), class: 'btn btn-primary'  %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

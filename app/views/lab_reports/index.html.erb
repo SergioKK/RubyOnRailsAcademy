@@ -21,14 +21,14 @@
         <% if report.grade %>
           <h3>Mark: <%= report.grade %></h3>
         <% else %>
-          <% if current_user.has_role? :teacher %>
+          <% if policy(report).add_mark? %>
             <li><%= link_to "Add mark", add_mark_path(report), class: 'btn btn-primary' %></li>
           <% else %>
             <h3><%= "No grade yet" %></h3>
           <% end %>
         <% end %>
 
-        <% if current_user.has_role? :teacher %>
+        <% if policy(report).destroy? %>
           <li><%= link_to "Remove", lab_report_path(report), class: 'btn btn-danger', data: {
             turbo_method: :delete,
             turbo_confirm: "Are you sure?"

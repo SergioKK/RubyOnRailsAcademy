@@ -8,7 +8,6 @@ RSpec.describe 'Users', type: :system do
     fill_in('Email', :with => 'Andrey@Rublev.com')
     fill_in('Password', :with => 'Andrey@Rublev.com')
     fill_in('Password confirmation', :with => 'Andrey@Rublev.com')
-    select('teacher', from: 'Role')
     click_button('Sign up')
   end
 end
